@@ -1,0 +1,13 @@
+{
+  "name": "healthvault-ai-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix api\" \"npm run dev --prefix frontend\"",
+    "install-all": "npm install --prefix api && npm install --prefix frontend",
+    "vercel-build": "npm install --prefix api && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
