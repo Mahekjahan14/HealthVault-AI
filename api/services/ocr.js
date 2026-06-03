@@ -100,7 +100,6 @@ export async function analyzeMedicalFile(file) {
 
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const base64 = file.buffer.toString("base64");
     
     const prompt = `Classify this medical document into exactly one of these types:
@@ -136,10 +135,22 @@ Return ONLY a JSON object with this exact structure:
   }
 }`;
 
-    const result = await model.generateContent([
-      { text: prompt },
-      { inlineData: { mimeType: file.mimetype, data: base64 } }
-    ]);
+    let result;
+    try {
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      result = await model.generateContent([
+        { text: prompt },
+        { inlineData: { mimeType: file.mimetype, data: base64 } }
+      ]);
+    } catch (primaryErr) {
+      console.warn("Gemini 2.0 Flash failed or not found, trying fallback 1.5 Flash:", primaryErr.message);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      result = await model.generateContent([
+        { text: prompt },
+        { inlineData: { mimeType: file.mimetype, data: base64 } }
+      ]);
+    }
+
     const raw = result.response.text();
     try {
       const jsonMatch = raw.match(/\{[\s\S]*\}/);
