@@ -170,7 +170,6 @@ Return ONLY a JSON object with this exact structure:
     console.error("Gemini API call failed, falling back:", err.message);
     const fb = getFallbackData(file);
     fb.extractedText = `[Fallback OCR due to API Error: ${err.message}]\n\n` + fb.extractedText;
-    fb.findings = ["Gemini API Connection Error: " + err.message, ...fb.findings];
     return fb;
   }
 }
