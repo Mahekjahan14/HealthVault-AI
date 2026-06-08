@@ -499,26 +499,25 @@ Add your deployed links here:
 Frontend:
 
 ```text
-https://your-vercel-link.vercel.app
+https://health-vault-ai-iota.vercel.app/
 ```
 
 GitHub:
 
 ```text
-https://github.com/your-repository
+https://github.com/Mahekjahan14/HealthVault-AI.git
 ```
 
 Demo Video:
 
 ```text
-https://youtube.com/your-demo-video
+https://drive.google.com/file/d/1oJw-hQhUK1H7UoXqsGjHOCWL6ORL8Dv3/view?usp=sharing
 ```
 
 ---
 
 # Screenshots
 
-Add screenshots of:
 
 1. Login Page
 2. Patient Dashboard
